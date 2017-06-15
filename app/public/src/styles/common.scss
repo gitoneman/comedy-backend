@@ -1,0 +1,21 @@
+.container {
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 20px;
+  .admin & {
+    width: 100%;
+    padding: 0 20px;
+  }
+}
+
+#side {
+  float: right;
+  height: 100%;
+  overflow: auto;
+  width: 240px;
+  border: 1px solid #eee;
+  padding: 20px;
+}
+#main {
+  margin-right: 240px;
+}

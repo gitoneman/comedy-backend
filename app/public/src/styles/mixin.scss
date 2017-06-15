@@ -1,0 +1,31 @@
+$mobile-width: 414px;
+$pc-width: 1000px;
+
+@mixin mobile {
+  @media screen and (max-width: #{$mobile-width}) {
+    @content;
+  }
+}
+@mixin pc {
+  @media screen and (min-width: #{$pc-width}) {
+    @content;
+  }
+}
+@mixin arrow($color:#fff,$h:4px,$w:6px,$dir:right) {
+  content: "";
+  width: 0;
+  height: 0;
+  border-color: transparent transparent transparent $color;
+  border-style: solid;
+  border-width: $h $w;
+  position: absolute;
+  top: 11px;
+  right: 6px;
+
+  @if $dir == left {
+    border-color: transparent $color transparent transparent;
+  }
+  @if $dir == down {
+    border-color: $color transparent transparent transparent;
+  }
+}
