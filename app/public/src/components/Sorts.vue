@@ -40,7 +40,7 @@
           padding: 14px 0;
           display: block;
           text-align: center;
-          border-bottom: 1px solid #e1e1e1;
+          border-bottom: 1px solid rgba(225, 225, 225, 0.5);
           &:hover {
             color: #ff6817;
           }

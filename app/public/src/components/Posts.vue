@@ -2,7 +2,7 @@
   <div class="posts">
     <ul>
       <li class="posts__item" v-for="item in list">
-        <span class="posts__time">2017.06.20</span>
+        <span class="posts__time">{{item.time}}</span>
         <div class="posts__body">
           <h3 class="posts__title">{{item.title}}</h3>
           <div class="posts__action">
