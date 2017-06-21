@@ -53,14 +53,17 @@ export default {
 </script>
 <style scoped lang="scss">
 .posts {
-  margin-left: 100px;
   margin-bottom: 100px;
-  display: inline-block;
+  margin-top: 60px;
   ul {
     list-style: none;
     padding-left: 0;
     border-left: 1px solid #e1e1e2;
-    margin-top: 60px;
+    width: 760px;
+    margin: 0 auto;
+    @media screen and (min-width: 1440px) {
+      width: 900px;
+    }
   }
   &__item {
     border-bottom: 1px solid #eee;
@@ -79,11 +82,13 @@ export default {
     }
   }
   &__body {
-    margin-left: 130px;
+    margin-left: 160px;
     background: #fff;
-    width: 600px;
     padding: 20px;
     transition: all 0.3s;
+    @media screen and (min-width: 1440px) {
+      margin-left: 200px;
+    }
   }
   &__time {
     float: left;
@@ -116,7 +121,7 @@ export default {
 
   }
   &__pagination {
-    text-align: right;
+    text-align: center;
     margin-top: 40px;
   }
   &__action {
