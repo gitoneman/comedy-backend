@@ -24,10 +24,10 @@ const Post = {
     },
     getList ({commit}) {
       Util.ajax
-        .get('/api/posts')
+        .get('posts?_limit=10')
         .then(({data}) => {
           commit('save', {
-            data: data.data
+            data: data
           })
         })
     },

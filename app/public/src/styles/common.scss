@@ -9,13 +9,19 @@
 }
 
 #side {
-  float: right;
+  position: fixed;
+  top: 0;
   height: 100%;
   overflow: auto;
   width: 240px;
-  border: 1px solid #eee;
-  padding: 20px;
+  background: #2f2e2e;
 }
 #main {
-  margin-right: 240px;
+  position: absolute;
+  left: 240px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  background: #ededef;
 }

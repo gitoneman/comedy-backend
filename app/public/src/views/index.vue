@@ -1,10 +1,6 @@
 <template>
   <div class="front">
-    <div id="header">
-      <ui-header></ui-header>
-    </div>
     <router-view></router-view>
-    <ui-footer></ui-footer>
   </div>
 </template>
 <script>

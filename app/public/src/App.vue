@@ -28,7 +28,7 @@ export default {
 <style lang="scss">
 @import './styles/index.scss';
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: Helvetica, PingFangSC-Regular, Microsoft YaHei, Arial;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;

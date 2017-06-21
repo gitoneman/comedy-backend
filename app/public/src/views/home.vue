@@ -1,8 +1,7 @@
 <template>
-  <div class="container">
-    <ui-banner></ui-banner>
+  <div class="">
     <div id="side">
-      this is side
+      <ui-side></ui-side>
     </div>
     <div id="main">
       <Posts></Posts>
@@ -12,6 +11,7 @@
 <script>
 import Posts from '../components/Posts'
 import Banner from '../components/Banner'
+import Side from '../components/Side'
 
 export default {
   name: 'home',
@@ -27,7 +27,8 @@ export default {
   },
   components: {
     Posts,
-    'ui-banner': Banner
+    'ui-banner': Banner,
+    'ui-side': Side
   }
 }
 </script>
