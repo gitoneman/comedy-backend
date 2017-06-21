@@ -1,10 +1,13 @@
 <template>
-  <div class="">
-    <div id="side">
+  <div class="layout">
+    <div id="leftside">
       <ui-side></ui-side>
     </div>
     <div id="main">
       <Posts></Posts>
+    </div>
+    <div id="rightside">
+      <ui-sorts></ui-sorts>
     </div>
   </div>
 </template>
@@ -12,6 +15,7 @@
 import Posts from '../components/Posts'
 import Banner from '../components/Banner'
 import Side from '../components/Side'
+import Sorts from '../components/Sorts'
 
 export default {
   name: 'home',
@@ -28,7 +32,8 @@ export default {
   components: {
     Posts,
     'ui-banner': Banner,
-    'ui-side': Side
+    'ui-side': Side,
+    'ui-sorts': Sorts
   }
 }
 </script>

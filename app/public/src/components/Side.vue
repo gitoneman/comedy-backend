@@ -36,10 +36,10 @@
   .name {
     text-align: center;
     margin: 20px 0 40px;
-    color: #fafafa;
+    color: #fff;
   }
   .desc {
-    color: #8e8e8e;
+    color: #d1d1d1;
     font-size: 12px;
   }
   .list {

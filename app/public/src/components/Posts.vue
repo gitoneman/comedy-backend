@@ -9,7 +9,7 @@
             <i class="el-icon-star-off"> 10</i>
             <i class="el-icon-message"> 10</i>
           </div>
-          <p class="posts__desc">{{item.body}}</p>
+          <p class="posts__desc">{{item.desc}}</p>
           <div class="posts__img" v-if="item.img">
             <img :src="item.img" alt="" >
           </div>
@@ -54,16 +54,12 @@ export default {
 <style scoped lang="scss">
 .posts {
   margin-bottom: 100px;
-  margin-top: 60px;
+  margin-top: 40px;
   ul {
     list-style: none;
     padding-left: 0;
-    border-left: 1px solid #e1e1e2;
-    width: 760px;
-    margin: 0 auto;
-    @media screen and (min-width: 1440px) {
-      width: 900px;
-    }
+    border-left: 1px solid #e1e1e1;
+    margin: 0 30px 0 60px;
   }
   &__item {
     border-bottom: 1px solid #eee;
@@ -76,16 +72,22 @@ export default {
         }
       }
       .posts__body {
-        transform: translateY(-6px);
-        box-shadow: 0 26px 40px -24px rgba(204, 204, 204, 0.7);
+
       }
     }
   }
   &__body {
-    margin-left: 160px;
+    margin-left: 130px;
     background: #fff;
     padding: 20px;
     transition: all 0.3s;
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 26px 40px -24px rgba(204, 204, 204, 0.7);
+      .posts__title {
+        color: #ff6817;
+      }
+    }
     @media screen and (min-width: 1440px) {
       margin-left: 200px;
     }
@@ -107,9 +109,9 @@ export default {
     }
   }
   &__img {
-    height: 360px;
+    height: 260px;
     overflow: hidden;
-    margin-bottom: 20px;
+    margin-top: 20px;
     img {
       width: 100%;
     }
@@ -121,8 +123,9 @@ export default {
 
   }
   &__pagination {
-    text-align: center;
+    text-align: right;
     margin-top: 40px;
+    margin-right: 30px;
   }
   &__action {
     margin: 20px 0;

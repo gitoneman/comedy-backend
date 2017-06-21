@@ -7,8 +7,16 @@
     padding: 0 20px;
   }
 }
-
-#side {
+body {
+  background: #ededef;
+}
+.front, .layout {
+  height: 100%;
+}
+.layout {
+  // display: flex;
+}
+#leftside{
   position: fixed;
   top: 0;
   height: 100%;
@@ -16,12 +24,16 @@
   width: 240px;
   background: #2f2e2e;
 }
-#main {
-  position: absolute;
-  left: 240px;
+#rightside {
+  position: fixed;
   top: 0;
-  bottom: 0;
   right: 0;
+  height: 100%;
   overflow: auto;
-  background: #ededef;
+  width: 240px;
+}
+#main {
+  overflow: auto;
+  margin-left: 240px;
+  margin-right: 240px;
 }

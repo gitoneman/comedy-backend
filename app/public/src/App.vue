@@ -40,7 +40,7 @@ html,body {
 #app {
   position: relative;
   min-height: 100%;
-  padding-bottom: 100px;
+  height: 100%;
 }
 * {
   padding: 0;
