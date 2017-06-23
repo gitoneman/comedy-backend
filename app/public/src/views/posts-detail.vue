@@ -3,9 +3,9 @@
     <h2 class="title" v-if="id">编辑文章</h2>
     <h2 class="title" v-if="!id">新建文章</h2>
     <el-form ref="form" :model="form" label-width="80px">
-      <el-form-item label="文章名称">
+      <!--<el-form-item label="文章名称">
         <el-input v-model="form.name"></el-input>
-      </el-form-item>
+      </el-form-item>-->
       <el-form-item label="文章标题">
         <el-input v-model="form.title"></el-input>
       </el-form-item>
@@ -15,7 +15,7 @@
       <el-form-item label="文章配图">
         <el-upload
           class="upload-demo"
-          action="http://localhost:7001/upload"
+          :action="baseUrl"
           :on-preview="handlePreview"
           :on-remove="handleRemove"
           :on-success="handleSuccess"
@@ -32,7 +32,7 @@
         <el-switch on-text="" off-text="" v-model="form.publish"></el-switch>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">立即创建</el-button>
+        <el-button type="primary" @click="onSubmit">保存</el-button>
         <el-button @click="goback">取消</el-button>
       </el-form-item>
     </el-form>
@@ -40,7 +40,8 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-
+import Util from '../libs/util'
+console.log(Util)
 export default {
   name: 'postsDetail',
   data: () => {
@@ -48,12 +49,19 @@ export default {
       page: 'posts',
       msg: '',
       mditor: null,
-      id: null
+      id: null,
+      baseUrl: Util.baseURL + 'upload'
     }
   },
   computed: {
     ...mapState({
-      form: state => state.post.detail
+      form: function (state) {
+        if (this.id) {
+          return state.post.detail
+        } else {
+          return {}
+        }
+      }
     }),
     fileList: function () {
       if (!this.form.img) {
@@ -96,8 +104,18 @@ export default {
               form: this.form,
               id: this.id
             })
+            .then((data) => {
+              if (data.code === 0) {
+                this.goback()
+              }
+            })
           } else {
             this.$store.dispatch('post/add', this.form)
+            .then((data) => {
+              if (data.code === 0) {
+                this.goback()
+              }
+            })
           }
         } else {
           console.log('error submit!!')
@@ -109,8 +127,8 @@ export default {
     handlePreview () {
       console.log('handlePreview!')
     },
-    handleRemove () {
-      console.log('handleRemove!')
+    handleRemove (response) {
+      this.form.img = null
     },
     handleSuccess (response) {
       if (response.code === 0) {

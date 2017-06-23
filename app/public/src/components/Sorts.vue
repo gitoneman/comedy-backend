@@ -1,5 +1,6 @@
 <template>
-  <div class="sorts">
+  <div class="sorts" :class="open ? 'open' : ''">
+    <div class="menu" @click="clickdoor"><i class="el-icon-menu"></i></div>
     <ul>
       <li><a href="">原创文章</a></li>
       <li><a href="">别处转载</a></li>
@@ -14,19 +15,49 @@
 <script>
   export default {
     name: 'sorts',
+    data () {
+      return {
+        open: false
+      }
+    },
     methods: {
-
+      clickdoor () {
+        this.open = !this.open
+      }
     }
   }
 </script>
 
 <style scoped lang="scss">
+  @import '../styles/mixin.scss';
+  .menu {
+    display: none;
+    @include mobile {
+      position: absolute;
+      color: #fff;
+      right: -40px;
+      top: 16px;
+      z-index: 1;
+      display: block;
+      font-size: 20px;
+    }
+  }
   .sorts {
     background: #fff;
     width: 210px;
+    transition: all 0.3s;
+    @include mobile {
+      height: 100%;
+      &.open {
+        transform: translateX(210px);
+      }
+    }
     ul {
       list-style: none;
       margin-top: 40px;
+      @include mobile {
+        margin-top: 0;
+      }
       li {
         &:last-child {
           border: none;

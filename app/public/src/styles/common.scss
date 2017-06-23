@@ -23,17 +23,30 @@ body {
   overflow: auto;
   width: 240px;
   background: #2f2e2e;
+  @include mobile {
+    position: relative;
+    height: auto;
+    width: 100%;
+  }
 }
 #rightside {
   position: fixed;
   top: 0;
   right: 0;
   height: 100%;
-  overflow: auto;
   width: 240px;
+  @include mobile {
+    position: absolute;
+    left: 0;
+    width: 210px;
+    transform: translateX(-210px);
+  }
 }
 #main {
   overflow: auto;
   margin-left: 240px;
   margin-right: 240px;
+  @include mobile {
+    margin: 0;
+  }
 }

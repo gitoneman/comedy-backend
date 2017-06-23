@@ -16,22 +16,32 @@
         label="title">
       </el-table-column>
       <el-table-column
-        prop="img"
+        prop="desc"
+        label="desc">
+      </el-table-column>
+      <el-table-column
         label="img">
+        <template scope="scope">
+          <div class="img-wrap">
+            <img class="img" :src="scope.row.img" v-if="scope.row.img"/>
+            <!--{{scope.row.img}}-->
+          </div>
+        </template>
       </el-table-column>
       <el-table-column
         label="createdAt">
         <template scope="scope">
-        <el-icon name="time"></el-icon>
-        <span style="margin-left: 10px">{{ scope.row.createdAt | formatTime }}</span>
-      </template>
+          <el-icon name="time"></el-icon>
+          <span style="margin-left: 10px">{{ scope.row.createdAt | formatTime }}</span>
+        </template>
       </el-table-column>
       <el-table-column
         label="operate"
         width="100">
         <template scope="scope">
-        <span class="edit" @click="() => {edit(scope.row.objectId)}"><i class="el-icon-edit"></i></span>
-      </template>
+          <span class="edit" @click="() => {edit(scope.row.objectId)}"><i class="el-icon-edit"></i></span>
+          <span class="delete" @click="() => {del(scope.row.objectId)}"><i class="el-icon-delete"></i></span>
+        </template>
       </el-table-column>
     </el-table>
   </div>
@@ -61,6 +71,9 @@ export default {
     },
     edit (id) {
       this.$router.push(`/admin/posts/${id}`)
+    },
+    del (id) {
+      this.$store.dispatch('post/delete', id)
     }
   },
   filters: {
@@ -77,7 +90,17 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .edit {
+  .edit,.delete {
     cursor: pointer;
+    margin-right: 10px;
+  }
+  .img-wrap {
+    padding: 8px 0;
+    overflow: hidden;
+  }
+  .img {
+    float: left;
+    width: 110px;
+    margin-right: 6px;
   }
 </style>

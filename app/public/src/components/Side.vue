@@ -1,7 +1,7 @@
 <template>
   <div class="side">
     <div class="my">
-      <img class="avatar" src="//placeholder.qiniudn.com/140x140" alt="">
+      <img class="avatar" src="http://comedy.oss-cn-hangzhou.aliyuncs.com/static/avatar.png" alt="">
       <h4 class="name">摘下橘子的男人</h4>
       <p class="desc">受够了太久的平庸，被生活遗忘太多次的人生总要留下些什么，所以我</p>
     </div>
@@ -24,23 +24,37 @@
 </script>
 
 <style scoped lang="scss">
+  @import '../styles/mixin.scss';
   .my {
     padding: 40px 20px;
     background: #282828;
+    @include mobile {
+      padding: 0.4rem 0.2rem;
+    }
   }
   .avatar {
     border-radius: 200px;
     margin: 0 auto;
     display: block;
+    @include mobile {
+      width: 1.4rem;
+      height: 1.4rem;
+    }
   }
   .name {
     text-align: center;
     margin: 20px 0 40px;
     color: #fff;
+    @include mobile {
+      margin: 0.4rem 0.4rem;
+    }
   }
   .desc {
     color: #d1d1d1;
     font-size: 12px;
+    @include mobile {
+      padding: 0 0.2rem;
+    }
   }
   .list {
 
@@ -49,9 +63,18 @@
     ul {
       list-style: none;
       margin-top: 40px;
+      @include mobile {
+        overflow: hidden;
+        display: flex;
+        margin-top: 0;
+      }
       li {
         &:last-child {
           border: none;
+        }
+        @include mobile {
+          float: left;
+          flex-grow: 1;
         }
         a {
           text-decoration: none;

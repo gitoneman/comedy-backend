@@ -33,9 +33,16 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
+
 html,body {
   height: 100%;
   font-size: 14px;
+}
+
+html {
+  @include mobile {
+    font-size: calc(100vw/7.5);
+  }
 }
 #app {
   position: relative;

@@ -8,7 +8,7 @@ module.exports = app => {
       const postsList = yield ctx.service.posts.index(query);
       ctx.body = {
         code: 0,
-        msg: 'success',
+        msg: '',
         data: postsList.results
       };
     }
@@ -18,7 +18,7 @@ module.exports = app => {
       const postDetail = yield ctx.service.posts.show(id);
       ctx.body = {
         code: 0,
-        msg: 'success',
+        msg: '',
         data: postDetail
       };
     }
@@ -43,8 +43,16 @@ module.exports = app => {
         data: post
       };
     }
+    * destroy() {
+      const ctx = this.ctx;
+      const { id } = ctx.params;
+      const post = yield ctx.service.posts.destroy(id);
+      ctx.body = {
+        code: 0,
+        msg: 'success',
+        data: post
+      };
+    }
   }
   return PostController;
 };
-
-

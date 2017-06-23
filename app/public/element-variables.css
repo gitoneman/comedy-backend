@@ -24,7 +24,7 @@
   --color-black: #000;
 
   --color-base-black: color(var(--color-primary) h(+6) s(33%) l(18%));
-  --color-light-black: #333;
+  --color-light-black: #282828;
   --color-extra-light-black: color(var(--color-base-black) h(+2) s(19%) l(35%));
 
   --color-base-silver: color(var(--color-base-black) h(+3) s(16%) l(58%));

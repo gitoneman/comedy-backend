@@ -21,7 +21,8 @@ export default {
   name: 'home',
   data: () => {
     return {
-      page: 'home'
+      page: 'home',
+      open: false
     }
   },
   methods: {
@@ -38,5 +39,4 @@ export default {
 }
 </script>
 <style lang="scss">
-
 </style>

@@ -10,7 +10,7 @@ module.exports = app => {
           'X-LC-Id': id,
           'X-LC-Key': key
         },
-        data: query,
+        data: 'order=-createdAt',
         dataType: 'json'
       });
       return data;
@@ -50,6 +50,19 @@ module.exports = app => {
           'X-LC-Key': key
         },
         data: payload,
+        dataType: 'json'
+      });
+      return data;
+    }
+    * destroy(objectId) {
+      const { id, key, url } = this.app.config.LeanCloud;
+      const { data } = yield this.ctx.curl(`${url}/${objectId}`, {
+        method: 'DELETE',
+        contentType: 'json',
+        headers: {
+          'X-LC-Id': id,
+          'X-LC-Key': key
+        },
         dataType: 'json'
       });
       return data;

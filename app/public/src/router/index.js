@@ -17,6 +17,10 @@ const router = new Router({
   mode: 'hash',
   routes: [
     {
+      path: '/',
+      redirect: '/home'
+    },
+    {
       path: '/home',
       component: Index,
       children: [
