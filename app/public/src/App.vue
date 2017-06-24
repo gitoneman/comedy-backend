@@ -31,7 +31,7 @@ export default {
   font-family: Helvetica, PingFangSC-Regular, Microsoft YaHei, Arial;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: #666;
 }
 
 html,body {

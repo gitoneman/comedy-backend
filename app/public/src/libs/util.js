@@ -17,17 +17,27 @@ util.baseURL = baseURL
 util.ajax = axios.create({
   // baseURL: 'http://jsonplaceholder.typicode.com/',
   baseURL,
+  withCredentials: true,
   timeout: 30000
 })
 
 util.ajax.interceptors.response.use(function (response){
   //对响应数据做些事
   const {data} = response;
-  if (data.code === 0 && data.msg) {
-    Message({
-      message: data.msg,
-      type: 'success'
-    })
+  if (data.code === 0) {
+    if (data.msg) {
+      Message({
+        message: data.msg,
+        type: 'success'
+      })
+    }
+  } else {
+    if (data.msg) {
+      Message({
+        message: data.msg,
+        type: 'error'
+      })
+    }
   }
   return response;
 }, function(error) {

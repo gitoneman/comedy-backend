@@ -6,7 +6,7 @@
       <el-menu-item index="/about">关于</el-menu-item>
       <el-submenu index="2">
         <template slot="title">我</template>
-        <el-menu-item index="">sunny</el-menu-item>
+        <el-menu-item index="">{{username}}</el-menu-item>
         <el-menu-item index="/logout">退出</el-menu-item>
       </el-submenu>
     </el-menu>
@@ -29,7 +29,15 @@ export default {
 
     }
   },
+  computed: {
+    username: () => {
+      return window.username
+    }
+  },
   components: {
+
+  },
+  mounted () {
 
   }
 }

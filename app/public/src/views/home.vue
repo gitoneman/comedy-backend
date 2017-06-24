@@ -1,15 +1,5 @@
 <template>
-  <div class="layout">
-    <div id="leftside">
-      <ui-side></ui-side>
-    </div>
-    <div id="main">
-      <Posts></Posts>
-    </div>
-    <div id="rightside">
-      <ui-sorts></ui-sorts>
-    </div>
-  </div>
+  <Posts></Posts>
 </template>
 <script>
 import Posts from '../components/Posts'

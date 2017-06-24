@@ -6,6 +6,7 @@ import Home from '@/views/home'
 import Posts from '@/views/posts'
 import Index from '@/views/index'
 import Admin from '@/views/admin'
+import Login from '@/views/login'
 import PostsDetail from '@/views/posts-detail'
 import Util from '../libs/util'
 // const Home = resolve => require(['@/views/home'], resolve)
@@ -14,11 +15,15 @@ import Util from '../libs/util'
 Vue.use(Router)
 
 const router = new Router({
-  mode: 'hash',
+  mode: 'history',
   routes: [
     {
       path: '/',
       redirect: '/home'
+    },
+    {
+      path: '/admin',
+      redirect: '/admin/posts'
     },
     {
       path: '/home',
@@ -45,6 +50,23 @@ const router = new Router({
     {
       path: '/admin',
       component: Admin,
+      beforeEnter: (to, from, next) => {
+        console.log(window.username, 22)
+        if (window.username) {
+          next()
+        } else {
+          Util.ajax
+            .get(`user`)
+            .then(({data}) => {
+              if (data.code === 0) {
+                window.username = data.data.username
+                next()
+              } else {
+                next('/login')
+              }
+            })
+        }
+      },
       children: [
         {
           path: 'posts',
@@ -71,6 +93,11 @@ const router = new Router({
           component: PostsDetail
         }
       ]
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     }
   ]
 })

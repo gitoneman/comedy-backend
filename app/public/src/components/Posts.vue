@@ -3,7 +3,7 @@
     <ul>
       <li class="posts__item" v-for="item in list">
         <span class="posts__time">{{item.createAt | formatTime}}</span>
-        <div class="posts__body">
+        <div class="posts__body" @click="() => {handleItemClick(item.objectId)}">
           <h3 class="posts__title">{{item.title}}</h3>
           <div class="posts__action">
             <i class="el-icon-star-off"> 10</i>
@@ -39,11 +39,11 @@ export default {
     })
   },
   methods: {
-    readmore (id) {
-      this.$router.push(`/home/detail/${id}`)
-    },
     add () {
       this.$store.dispatch('post/increment')
+    },
+    handleItemClick (id) {
+      this.$router.push(`/home/detail/${id}`)
     }
   },
   mounted () {

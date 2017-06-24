@@ -6,9 +6,9 @@
       <p class="desc">受够了太久的平庸，被生活遗忘太多次的人生总要留下些什么，所以我</p>
     </div>
     <ul>
+      <li><router-link to="/home">首页</router-link></li>
       <li><a href="">私信</a></li>
-      <li><a href="">归档</a></li>
-      <li><a href="">RSS</a></li>
+      <li><a href="">留言</a></li>
       <li><a href="">搜索</a></li>
     </ul>
   </div>
