@@ -23,7 +23,7 @@
         label="img">
         <template scope="scope">
           <div class="img-wrap">
-            <img class="img" :src="scope.row.img" v-if="scope.row.img"/>
+            <img class="img" :src="scope.row.img" v-if="scope.row.img"></img>
             <!--{{scope.row.img}}-->
           </div>
         </template>
@@ -33,6 +33,12 @@
         <template scope="scope">
           <el-icon name="time"></el-icon>
           <span style="margin-left: 10px">{{ scope.row.createdAt | formatTime }}</span>
+        </template>
+      </el-table-column>
+       <el-table-column
+        label="publish">
+        <template scope="scope">
+          <span>{{ scope.row.publish}}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -73,7 +79,19 @@ export default {
       this.$router.push(`/admin/posts/${id}`)
     },
     del (id) {
-      this.$store.dispatch('post/delete', id)
+      // this.$store.dispatch('post/delete', id)
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$store.dispatch('post/delete', id)
+      }).catch(() => {
+        // this.$message({
+        //   type: 'info',
+        //   message: '已取消删除'
+        // })
+      })
     }
   },
   filters: {
@@ -85,7 +103,7 @@ export default {
 
   },
   mounted () {
-    this.$store.dispatch('post/getList')
+    this.$store.dispatch('post/getList', {type: 'all'})
   }
 }
 </script>

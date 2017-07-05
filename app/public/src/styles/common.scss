@@ -5,6 +5,10 @@
   .admin & {
     width: 100%;
     padding: 0 20px;
+    @include mobile {
+      padding: 0 0.2rem;
+      margin-top: 0;
+    }
   }
 }
 body {
@@ -13,8 +17,21 @@ body {
 .front, .layout {
   height: 100%;
 }
+.front {
+    max-width: 1500px;
+    margin: 0 auto;
+    position: relative;
+}
 .layout {
   // display: flex;
+}
+.admin {
+  // height: 100%;
+  @include mobile {
+    background: #fff;
+    padding-bottom: 0.2rem;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 #leftside{
   position: fixed;
@@ -30,7 +47,7 @@ body {
   }
 }
 #rightside {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   height: 100%;

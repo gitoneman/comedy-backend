@@ -2,15 +2,20 @@
 
 module.exports = app => {
   class PostsService extends app.Service {
-    * index(query = {}) {
+    * index(token, query) {
       // read config
+      // &where={"publish":{"$in":[false]}}
       const { id, key, url } = this.app.config.LeanCloud;
+      let params = '&where={"publish":{"$in":[true]}}';
+      if (token && query.type === 'all') {
+        params = '';
+      }
       const { data } = yield this.ctx.curl(`${url}`, {
         headers: {
           'X-LC-Id': id,
           'X-LC-Key': key
         },
-        data: 'order=-createdAt',
+        data: 'order=-updatedAt' + params,
         dataType: 'json'
       });
       return data;

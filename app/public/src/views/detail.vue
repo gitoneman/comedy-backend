@@ -57,10 +57,9 @@ export default {
   background: #fff;
   margin: 40px;
   padding: 30px 20px;
-  @media screen and (min-width: 1440px) {
-     max-width: 900px;
-    margin: 40px auto;
-  }
+  // @media screen and (min-width: 1440px) {
+  //   margin: 40px auto;
+  // }
   @include mobile {
     margin: 0;
     padding: 0.3rem;

@@ -2,7 +2,7 @@
   <div class="detail">
     <h2 class="title" v-if="id">编辑文章</h2>
     <h2 class="title" v-if="!id">新建文章</h2>
-    <el-form ref="form" :model="form" label-width="80px">
+    <el-form class="post-form" ref="form" :model="form" label-width="80px">
       <!--<el-form-item label="文章名称">
         <el-input v-model="form.name"></el-input>
       </el-form-item>-->
@@ -41,7 +41,7 @@
 <script>
 import { mapState } from 'vuex'
 import Util from '../libs/util'
-console.log(Util)
+
 export default {
   name: 'postsDetail',
   data: () => {
@@ -58,9 +58,8 @@ export default {
       form: function (state) {
         if (this.id) {
           return state.post.detail
-        } else {
-          return {}
         }
+        return state.post.empty
       }
     }),
     fileList: function () {
@@ -77,18 +76,19 @@ export default {
     }
   },
   updated () {
-    this.mditor.value = this.form.content
+    if (this.form.content) {
+      this.mditor.value = this.form.content
+    }
   },
   mounted () {
-    var mditor = Mditor.fromTextarea(document.getElementById('editor')) //eslint-disable-line
-    mditor.on('ready', function () {
-      console.log(mditor.value)
-      mditor.value = '** hello **'
-    })
-    this.mditor = mditor
-    if (this.$route.params.id) {
-      this.id = this.$route.params.id
-      this.$store.dispatch('post/getDetail', this.$route.params.id)
+    if (window.Mditor) { //eslint-disable-line
+      this.initEditor()
+    } else {
+      Util.appendCss('//asset.comedy.ren/static/css/mditor.min.css')
+      Util.appendJs('//asset.comedy.ren/static/js/mditor.min.js')
+      .then(() => {
+        this.initEditor()
+      })
     }
   },
   methods: {
@@ -113,6 +113,9 @@ export default {
             this.$store.dispatch('post/add', this.form)
             .then((data) => {
               if (data.code === 0) {
+                for (var key in this.$store.state.post.empty) {
+                  this.$store.state.post.empty[key] = ''
+                }
                 this.goback()
               }
             })
@@ -130,9 +133,24 @@ export default {
     handleRemove (response) {
       this.form.img = null
     },
+    switchChange (v) {
+      console.log(v)
+    },
     handleSuccess (response) {
       if (response.code === 0) {
         this.form.img = response.data.url
+      }
+    },
+    initEditor () {
+      var mditor = Mditor.fromTextarea(document.getElementById('editor')) //eslint-disable-line
+      mditor.on('ready', function () {
+        console.log(mditor.value)
+        mditor.value = '** hello **'
+      })
+      this.mditor = mditor
+      if (this.$route.params.id) {
+        this.id = this.$route.params.id
+        this.$store.dispatch('post/getDetail', this.$route.params.id)
       }
     },
     goback () {
@@ -142,13 +160,34 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+  @import '../styles/mixin.scss';
   .detail {
     width: 1000px;
     margin: 0 auto;
+    @include mobile {
+      width: 100%;
+      padding: 10px 0;
+    }
   }
   .title {
     padding: 10px;
     border-bottom: 1px solid #ddd;
     margin-bottom:  40px;
+    @include mobile {
+      margin-bottom: 0.2rem;
+      padding: 0.1rem 0;
+    }
   }
 </style>
+<style>
+  .post-form .el-form-item__label {
+    float: none;
+    /*margin-bottom: 0.1rem;*/
+    display: block;
+    text-align: left;
+  }
+  .post-form .el-form-item__content {
+    margin-left: 0!important;
+  }
+</style>
+

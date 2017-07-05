@@ -8,6 +8,9 @@ const Post = {
     ],
     detail: {
 
+    },
+    empty: {
+      publish: false
     }
   },
   getters: {},
@@ -23,11 +26,17 @@ const Post = {
     increment ({commit}) {
       commit('increment')
     },
-    getList ({commit}) {
+    getList ({commit}, payload) {
+      let type
+
+      if (payload) {
+        type = payload.type
+      }
       Util.ajax
         .get('posts', {
           params: {
-            _limit: 10
+            _limit: 10,
+            type
           }
         })
         .then(({data}) => {
@@ -69,7 +78,7 @@ const Post = {
           .delete(`posts/${id}`)
           .then(({data}) => {
             resolve(data)
-            dispatch('getList')
+            dispatch('getList', {type: 'all'})
           })
       })
     }

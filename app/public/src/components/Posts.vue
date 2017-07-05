@@ -2,7 +2,7 @@
   <div class="posts">
     <ul>
       <li class="posts__item" v-for="item in list">
-        <span class="posts__time">{{item.createAt | formatTime}}</span>
+        <span class="posts__time">{{item.updatedAt | formatTime}}</span>
         <div class="posts__body" @click="() => {handleItemClick(item.objectId)}">
           <h3 class="posts__title">{{item.title}}</h3>
           <div class="posts__action">
@@ -65,14 +65,6 @@ export default {
     padding-left: 0;
     border-left: 1px solid #e1e1e1;
     margin: 0 30px 0 60px;
-    @media screen and (min-width: 1440px) and (max-width: 1920px) {
-      width: 900px;
-      margin: 0 auto;
-    }
-    @media screen and (min-width: 1920px) {
-      width: 1000px;
-      margin: 0 auto;
-    }
     @include mobile {
       margin: 0;
       border-left: 0;

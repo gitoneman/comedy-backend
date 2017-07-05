@@ -51,7 +51,6 @@ const router = new Router({
       path: '/admin',
       component: Admin,
       beforeEnter: (to, from, next) => {
-        console.log(window.username, 22)
         if (window.username) {
           next()
         } else {

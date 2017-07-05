@@ -5,7 +5,7 @@ module.exports = app => {
     * index() {
       const ctx = this.ctx;
       const query = ctx.query;
-      const postsList = yield ctx.service.posts.index(query);
+      const postsList = yield ctx.service.posts.index(ctx.session.token, query);
       // ctx.set('Access-Control-Allow-Credentials',true)
       ctx.body = {
         code: 0,

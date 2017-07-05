@@ -7,6 +7,36 @@ util.title = function(title) {
   title = title ? title + '' : 'my project'
   window.document.title = title
 }
+util.isMobile = /mobile/i.test(window.navigator.userAgent)
+util.appendJs = function (url) {
+  return new Promise(function (resolve, reject) {
+    const s = document.createElement('script')
+    s.type = 'text/javascript'
+    s.src = url
+    s.onload = function () {
+      resolve()
+    }
+    s.onerror = function () {
+      reject()
+    }
+    document.body.appendChild(s)
+  })
+}
+util.appendCss = function (url) {
+  return new Promise(function (resolve, reject) {
+    const s = document.createElement('link')
+    s.rel = "stylesheet";
+    s.type = "text/css";
+    s.href = url
+    s.onload = function () {
+      resolve()
+    }
+    s.onerror = function () {
+      reject()
+    }
+    document.getElementsByTagName("head")[0].appendChild(s)
+  })
+}
 
 if (window.location.hostname === 'localhost') {
   var baseURL = 'http://localhost:7001/api/'
